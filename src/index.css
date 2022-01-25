@@ -3,6 +3,7 @@
   --cor-1: #2f3a8f;
   --cor-2: #fe7e6d;
   --sombra: 0 0 0.5rem rgba(12, 16, 39, 0.3);
+  --sombra-leve: 0 0 0.3rem rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -20,12 +21,68 @@ body {
   align-items: center;
   justify-content: flex-start;
   background-color: #ededed;
+  gap: 1rem;
+}
+
+p,
+a,
+input,
+label,
+button,
+span {
+  font-size: 1.2rem;
 }
 
 a {
   text-decoration: none;
   color: inherit;
   transition: 0.3s color;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+button {
+  border: none;
+  background-color: var(--cor-1);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  border: 2px solid var(--cor-1);
+  cursor: pointer;
+  transition: 0.2s background;
+}
+
+button:hover {
+  color: var(--cor-1);
+  background-color: #fff;
+  border: 2px solid var(--cor-1);
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px #ddd dashed;
+  border-radius: 0.1rem;
+  transition: 0.2s border;
+}
+
+input:focus {
+  border: 2px dashed var(--cor-1);
+  outline: none;
+}
+
+h2 {
+  font-size: 1.8rem;
 }
 
 header,
@@ -47,6 +104,11 @@ header h1 {
 
 main {
   flex-grow: 1;
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 footer {
@@ -67,4 +129,14 @@ footer .links {
 
 footer a:hover {
   color: #ddd;
+}
+
+.card {
+  padding: 1rem;
+  background: #fff;
+  box-shadow: var(--sombra-leve);
+  border-radius: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
