@@ -45,6 +45,19 @@ form {
   gap: 0.5rem;
 }
 
+form a {
+  color: var(--cor-1);
+}
+
+form a:hover {
+  text-decoration: underline;
+}
+
+form .form-ajuda {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
 form div {
   display: flex;
   flex-direction: column;
@@ -109,6 +122,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  padding: 0 1rem;
 }
 
 footer {
