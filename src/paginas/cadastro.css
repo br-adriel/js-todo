@@ -1,0 +1,28 @@
+#paginaCadastro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#paginaCadastro .card {
+  width: 95%;
+}
+
+@media (min-width: 600px) {
+  #paginaCadastro .card {
+    width: 60%;
+  }
+}
+
+@media (min-width: 900px) {
+  #paginaCadastro .card {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1280px) {
+  #paginaCadastro .card {
+    width: 30%;
+  }
+}
