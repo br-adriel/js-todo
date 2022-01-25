@@ -1,0 +1,70 @@
+:root {
+  font-size: 16px;
+  --cor-1: #2f3a8f;
+  --cor-2: #fe7e6d;
+  --sombra: 0 0 0.5rem rgba(12, 16, 39, 0.3);
+}
+
+* {
+  font-family: "Outfit", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ededed;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s color;
+}
+
+header,
+footer {
+  background: var(--cor-1);
+  padding: 1rem;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--sombra);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header h1 {
+  font-family: "Oleo Script", cursive;
+}
+
+main {
+  flex-grow: 1;
+}
+
+footer {
+  gap: 1.5rem;
+}
+
+footer i {
+  font-size: 1.3rem;
+}
+
+footer .links {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer a:hover {
+  color: #ddd;
+}
