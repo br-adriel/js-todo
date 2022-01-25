@@ -1,6 +1,6 @@
+/* Gerador de campos de formulario */
 function gerCampoForm(label, tipo, id, textoAjuda = "") {
   const campo = document.createElement("div");
-  campo.classList.add("campo-form");
 
   const labelHtml = document.createElement("label");
   labelHtml.setAttribute("for", id);
@@ -21,4 +21,12 @@ function gerCampoForm(label, tipo, id, textoAjuda = "") {
   return campo;
 }
 
-export { gerCampoForm };
+/* Gerador de botoes html */
+function gerBotao(tipo, conteudo) {
+  const btn = document.createElement("button");
+  btn.setAttribute("type", tipo);
+  btn.innerText = conteudo;
+  return btn;
+}
+
+export { gerBotao, gerCampoForm };
