@@ -1,5 +1,5 @@
 /* Gerador de campos de formulario */
-function gerCampoForm(label, tipo, id, textoAjuda = "") {
+function gerCampoForm(label, tipo, id, textoAjuda = "", obrigatorio = true) {
   const campo = document.createElement("div");
 
   const labelHtml = document.createElement("label");
@@ -9,6 +9,9 @@ function gerCampoForm(label, tipo, id, textoAjuda = "") {
   const inputHtml = document.createElement("input");
   inputHtml.setAttribute("type", tipo);
   inputHtml.setAttribute("id", id);
+  if (obrigatorio) {
+    inputHtml.setAttribute("required", "true");
+  }
 
   const ajudaHtml = document.createElement("p");
   ajudaHtml.innerText = textoAjuda;
