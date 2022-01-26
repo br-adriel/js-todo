@@ -32,4 +32,13 @@ function gerBotao(tipo, conteudo) {
   return btn;
 }
 
-export { gerBotao, gerCampoForm };
+/* Gera a nova pagina e remove a anteriro */
+function gerVisualizacao(novaPagina) {
+  const main = document.getElementById("content");
+  main.appendChild(novaPagina);
+  main.firstChild.style.display = "none";
+  main.removeChild(main.firstChild);
+  main.firstChild.style.display = "flex";
+}
+
+export { gerBotao, gerCampoForm, gerVisualizacao };
