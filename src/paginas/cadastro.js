@@ -1,5 +1,9 @@
 import formCadastro from "./../componentes/formUsuario";
-import { gerBotao, gerCampoForm } from "./../componentes/geradoresHtml";
+import {
+  gerBotao,
+  gerCampoForm,
+  gerVisualizacao,
+} from "./../componentes/geradoresHtml";
 import "./cadastro.css";
 import pagLogin from "./login";
 
@@ -29,11 +33,7 @@ const pagCadastro = (() => {
   linkLogin.setAttribute("href", "#");
   linkLogin.innerText = "Faça login";
   linkLogin.addEventListener("click", () => {
-    const main = document.getElementById("content");
-    main.appendChild(pagLogin);
-    main.firstChild.style.display = "none";
-    main.removeChild(main.firstChild);
-    main.firstChild.style.display = "flex";
+    gerVisualizacao(pagLogin);
   });
 
   const pLogin = document.createElement("p");

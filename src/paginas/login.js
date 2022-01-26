@@ -1,5 +1,5 @@
 import formLogin from "./../componentes/formUsuario";
-import { gerBotao } from "./../componentes/geradoresHtml";
+import { gerBotao, gerVisualizacao } from "./../componentes/geradoresHtml";
 import pagCadastro from "./cadastro";
 import "./login.css";
 
@@ -13,11 +13,7 @@ const pagLogin = (() => {
   linkCriarConta.setAttribute("href", "#");
   linkCriarConta.innerText = "Cadastre-se";
   linkCriarConta.addEventListener("click", (e) => {
-    const main = document.getElementById("content");
-    main.appendChild(pagCadastro);
-    main.firstChild.style.display = "none";
-    main.removeChild(main.firstChild);
-    main.firstChild.style.display = "flex";
+    gerVisualizacao(pagCadastro);
   });
 
   const pCriarConta = document.createElement("p");
