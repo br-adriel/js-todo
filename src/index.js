@@ -5,6 +5,7 @@ import {
   gerBotao,
   gerCampoForm,
   gerVisualizacao,
+  gerMensagem,
 } from "./componentes/geradoresHtml";
 import Usuario from "./classes/Usuario";
 import Lista from "./classes/Lista";
@@ -33,24 +34,30 @@ const pagCadastro = (() => {
 
   const form = formUsuario();
   form.appendChild(inputSenha2);
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", (e) => enviarForm(e));
+
+  // lida com o envio do formulario de cadastro
+  function enviarForm(e) {
     e.preventDefault();
 
     const usuarioForm = document.getElementById("formUsuario").value;
     const senhaForm = document.getElementById("formSenha").value;
     const senha2Form = document.getElementById("formSenha2").value;
 
+    const campoMsg = document.getElementById("campoMsgForm");
     if (usuarios.some((u) => u.usuario === usuarioForm)) {
-      console.log("Já existe usuario com esse username");
+      const msg = gerMensagem("Esse nome de usuário já está em uso", "aviso");
+      campoMsg.appendChild(msg);
     } else if (senhaForm !== senha2Form) {
-      console.log("As senha digitadas são diferentes");
+      const msg = gerMensagem("As senhas não correspondem", "aviso");
+      campoMsg.appendChild(msg);
     } else {
       const novoUsuario = new Usuario(usuarioForm, senhaForm);
       usuarios.push(novoUsuario);
       usuarioAtivo.push(novoUsuario);
       console.log("Conta criada e usuário logado");
     }
-  });
+  }
 
   // link caso o usuario tenha conta
   const linkLogin = document.createElement("a");
