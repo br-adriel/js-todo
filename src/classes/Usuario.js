@@ -1,7 +1,6 @@
 class Usuario {
   #senha;
-  constructor(usuario, nome, senha) {
-    this.nome = nome;
+  constructor(usuario, senha) {
     this.usuario = usuario;
     this.listas = [];
     this.#senha = senha;
