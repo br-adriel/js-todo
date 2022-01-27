@@ -1,7 +1,6 @@
 class Lista {
   #criadaEm;
-  constructor(usuario, nome, descricao) {
-    this.usuario = usuario;
+  constructor(nome, descricao) {
     this.nome = nome;
     this.descricao = descricao;
     this.tarefas = [];
