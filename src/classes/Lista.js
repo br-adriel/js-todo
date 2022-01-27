@@ -4,6 +4,7 @@ class Lista {
     this.usuario = usuario;
     this.nome = nome;
     this.descricao = descricao;
+    this.tarefas = [];
     this.#criadaEm = new Date();
   }
 
