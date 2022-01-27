@@ -6,6 +6,12 @@ import {
   gerCampoForm,
   gerVisualizacao,
 } from "./componentes/geradoresHtml";
+import Usuario from "./classes/Usuario";
+import Lista from "./classes/Lista";
+import Tarefa from "./classes/Tarefa";
+
+const usuarios = [];
+const usuarioAtivo = [];
 
 const pagCadastro = (() => {
   // titulo do card
@@ -29,6 +35,21 @@ const pagCadastro = (() => {
   form.appendChild(inputSenha2);
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    const usuarioForm = document.getElementById("formUsuario").value;
+    const senhaForm = document.getElementById("formSenha").value;
+    const senha2Form = document.getElementById("formSenha2").value;
+
+    if (usuarios.some((u) => u.usuario === usuarioForm)) {
+      console.log("Já existe usuario com esse username");
+    } else if (senhaForm !== senha2Form) {
+      console.log("As senha digitadas são diferentes");
+    } else {
+      const novoUsuario = new Usuario(usuarioForm, senhaForm);
+      usuarios.push(novoUsuario);
+      usuarioAtivo.push(novoUsuario);
+      console.log("Conta criada e usuário logado");
+    }
   });
 
   // link caso o usuario tenha conta
