@@ -29,7 +29,11 @@ const pagCadastro = (() => {
     "Confirmação de senha",
     "password",
     "formSenha2",
-    textoAjuda
+    textoAjuda,
+    [
+      ["minlength", "8"],
+      ["required", "true"],
+    ]
   );
 
   const form = formUsuario();
