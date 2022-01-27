@@ -154,3 +154,38 @@ footer a:hover {
   flex-direction: column;
   gap: 0.5rem;
 }
+
+/* Página de login e c adastro */
+#paginaLogin,
+#paginaCadastro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#paginaLogin .card,
+#paginaCadastro .card {
+  width: 95%;
+}
+
+@media (min-width: 600px) {
+  #paginaLogin .card,
+  #paginaCadastro .card {
+    width: 60%;
+  }
+}
+
+@media (min-width: 900px) {
+  #paginaLogin .card,
+  #paginaCadastro .card {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1280px) {
+  #paginaLogin .card,
+  #paginaCadastro .card {
+    width: 30%;
+  }
+}
