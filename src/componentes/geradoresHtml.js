@@ -41,4 +41,22 @@ function gerVisualizacao(novaPagina) {
   main.firstChild.style.display = "flex";
 }
 
-export { gerBotao, gerCampoForm, gerVisualizacao };
+/* Gera mensagem sobre situação de formulário e outros elementos */
+function gerMensagem(mensagem, tipo) {
+  const p = document.createElement("p");
+  p.innerText = mensagem;
+
+  const msgHtml = document.createElement("div");
+  msgHtml.classList.add("msg");
+  msgHtml.appendChild(p);
+  switch (tipo) {
+    case "sucesso":
+    case "aviso":
+    case "erro":
+      msgHtml.classList.add(tipo);
+      break;
+  }
+  return msgHtml;
+}
+
+export { gerBotao, gerCampoForm, gerVisualizacao, gerMensagem };
