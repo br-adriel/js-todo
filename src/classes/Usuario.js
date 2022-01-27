@@ -3,6 +3,7 @@ class Usuario {
   constructor(usuario, nome, senha) {
     this.nome = nome;
     this.usuario = usuario;
+    this.listas = [];
     this.#senha = senha;
   }
 
