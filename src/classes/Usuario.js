@@ -7,7 +7,7 @@ class Usuario {
     this.#senha = senha;
   }
 
-  set senha(senhaAtual, novaSenha) {
+  mudarSenha(senhaAtual, novaSenha) {
     if (senhaAtual === this.#senha) {
       this.#senha = novaSenha;
     }
