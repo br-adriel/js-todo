@@ -54,9 +54,15 @@ function pagCadastro() {
 
     const campoMsg = document.getElementById("campoMsgForm");
     if (usuarios.some((u) => u.usuario === usuarioForm)) {
+      if (campoMsg.hasChildNodes()) {
+        campoMsg.removeChild(campoMsg.children[0]);
+      }
       const msg = gerMensagem("Esse nome de usuário já está em uso", "aviso");
       campoMsg.appendChild(msg);
     } else if (senhaForm !== senha2Form) {
+      if (campoMsg.hasChildNodes()) {
+        campoMsg.removeChild(campoMsg.children[0]);
+      }
       const msg = gerMensagem("As senhas não correspondem", "aviso");
       campoMsg.appendChild(msg);
     } else {
@@ -152,6 +158,9 @@ function pagLogin() {
       gerVisualizacao(pagInicial());
     } else {
       const campoMsg = document.getElementById("campoMsgForm");
+      if (campoMsg.hasChildNodes()) {
+        campoMsg.removeChild(campoMsg.children[0]);
+      }
       const msg = gerMensagem("Credenciais inválidas", "erro");
       campoMsg.appendChild(msg);
     }
