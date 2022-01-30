@@ -1,6 +1,7 @@
 import "./index.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import formUsuario from "./componentes/formUsuario";
+import formLista from "./componentes/formLista";
 import {
   gerBotao,
   gerCampoForm,
@@ -175,9 +176,12 @@ function pagInicial() {
   // botao nova tarefa
   const icone = gerIcone(["bi", "bi-plus"]);
 
-  const btnNovaTarefa = gerBotao("button", "");
-  btnNovaTarefa.setAttribute("title", "Nova lista");
-  btnNovaTarefa.appendChild(icone);
+  const btnNovaLista = gerBotao("button", "");
+  btnNovaLista.setAttribute("title", "Nova lista");
+  btnNovaLista.appendChild(icone);
+  btnNovaLista.addEventListener("click", () => {
+    gerVisualizacao(pagNovaLista());
+  });
 
   // botao sair
   const btnSair = gerBotao("button", "Sair");
@@ -189,7 +193,7 @@ function pagInicial() {
   // barra de acoes
   const barra = document.createElement("div");
   barra.classList.add("barraAcoes");
-  barra.appendChild(btnNovaTarefa);
+  barra.appendChild(btnNovaLista);
   barra.appendChild(btnSair);
 
   // Div para as listas do usuario
@@ -253,6 +257,77 @@ function pagInicial() {
   paginaInicial.appendChild(barra);
   paginaInicial.appendChild(listas);
   return paginaInicial;
+}
+
+// Página para criar nova lista de tarefas
+function pagNovaLista() {
+  // botao voltar
+  const icone = gerIcone(["bi", "bi-arrow-left"]);
+
+  const btnVoltar = gerBotao("button", "");
+  btnVoltar.setAttribute("title", "Voltar");
+  btnVoltar.appendChild(icone);
+  btnVoltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial());
+  });
+
+  // botao sair
+  const btnSair = gerBotao("button", "Sair");
+  btnSair.addEventListener("click", () => {
+    usuarioAtivo.pop();
+    gerVisualizacao(pagLogin());
+  });
+
+  // barra de acoes
+  const barra = document.createElement("div");
+  barra.classList.add("barraAcoes");
+  barra.appendChild(btnVoltar);
+  barra.appendChild(btnSair);
+
+  // form de nova lista
+  const btnSubmit = gerBotao("submit", "Salvar");
+
+  const form = formLista("Nova lista");
+  form.appendChild(btnSubmit);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Cria a nova lista
+    const novaLista = new Lista(
+      form["nome-lista"].value,
+      form["descricao-lista"].value
+    );
+
+    // Adiciona lista ao usuario
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].username === usuarioAtivo[0].username) {
+        usuarios[i].listas.push(novaLista);
+        usuarioAtivo.pop();
+        usuarioAtivo.push(usuarios[i]);
+        break;
+      }
+    }
+
+    // Volta para pagina inicial
+    gerVisualizacao(pagInicial());
+  });
+
+  // card para o form
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.appendChild(form);
+
+  // div para guardar o conteudo da pagina
+  const div = document.createElement("div");
+  div.classList.add("conteudo");
+  div.appendChild(card);
+
+  // Section da pagina de nova lista
+  const paginaNovaLista = document.createElement("section");
+  paginaNovaLista.setAttribute("id", "paginaNovaLista");
+  paginaNovaLista.appendChild(barra);
+  paginaNovaLista.appendChild(div);
+  return paginaNovaLista;
 }
 
 const conteudo = document.getElementById("content");
