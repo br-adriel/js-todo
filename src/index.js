@@ -238,6 +238,9 @@ function pagInicial() {
     const btnEditar = gerBotao("button", "");
     btnEditar.setAttribute("title", "Editar lista");
     btnEditar.appendChild(iconeEditar);
+    btnEditar.addEventListener("click", () => {
+      gerVisualizacao(pagEditarLista(lista));
+    });
 
     // Botao apagar
     const iconeApagar = gerIcone(["bi", "bi-trash"]);
@@ -337,6 +340,82 @@ function pagNovaLista() {
   paginaNovaLista.appendChild(barra);
   paginaNovaLista.appendChild(div);
   return paginaNovaLista;
+}
+
+// Página para editar lista de tarefas
+function pagEditarLista(lista) {
+  // botao voltar
+  const icone = gerIcone(["bi", "bi-arrow-left"]);
+
+  const btnVoltar = gerBotao("button", "");
+  btnVoltar.setAttribute("title", "Voltar");
+  btnVoltar.appendChild(icone);
+  btnVoltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial());
+  });
+
+  // botao sair
+  const btnSair = gerBotao("button", "Sair");
+  btnSair.addEventListener("click", () => {
+    usuarioAtivo.pop();
+    gerVisualizacao(pagLogin());
+  });
+
+  // barra de acoes
+  const barra = document.createElement("div");
+  barra.classList.add("barraAcoes");
+  barra.appendChild(btnVoltar);
+  barra.appendChild(btnSair);
+
+  // form de nova lista
+  const btnSubmit = gerBotao("submit", "Atualizar");
+
+  const form = formLista("Editar lista");
+  form.appendChild(btnSubmit);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Adiciona lista ao usuario
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].username === usuarioAtivo[0].username) {
+        for (let j = 0; j < usuarios[i].listas.length; j++) {
+          if (usuarios[i].listas[j].criadaEm === lista.criadaEm) {
+            usuarios[i].listas[j].nome = form["nome-lista"].value;
+            usuarios[i].listas[j].descricao = form["descricao-lista"].value;
+            break;
+          }
+        }
+        usuarioAtivo.pop();
+        usuarioAtivo.push(usuarios[i]);
+        break;
+      }
+    }
+
+    // Volta para pagina inicial
+    gerVisualizacao(pagInicial());
+  });
+
+  // Carrega o conteudo atual da lista
+  form["nome-lista"].value = lista.nome;
+  form["descricao-lista"].value = lista.descricao;
+
+  // card para o form
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.appendChild(form);
+
+  // div para guardar o conteudo da pagina
+  const div = document.createElement("div");
+  div.classList.add("conteudo");
+  div.appendChild(card);
+
+  // Section da pagina de nova lista
+  const paginaEditarLista = document.createElement("section");
+  paginaEditarLista.setAttribute("id", "paginaEditarLista");
+  paginaEditarLista.appendChild(barra);
+  paginaEditarLista.appendChild(div);
+
+  return paginaEditarLista;
 }
 
 const conteudo = document.getElementById("content");

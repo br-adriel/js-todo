@@ -184,10 +184,7 @@ footer a:hover {
 }
 
 /* Página de login e c adastro */
-#paginaLogin,
-#paginaCadastro,
-#paginaInicial,
-#paginaNovaLista {
+section {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -202,12 +199,14 @@ footer a:hover {
 
 /* Página inicial */
 #paginaInicial,
-#paginaNovaLista {
+#paginaNovaLista,
+#paginaEditarLista {
   gap: 1rem;
 }
 
 #paginaInicial .barraAcoes,
-#paginaNovaLista .barraAcoes {
+#paginaNovaLista .barraAcoes,
+#paginaEditarLista .barraAcoes {
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -239,21 +238,24 @@ footer a:hover {
 }
 
 /* Página nova lista */
-#paginaNovaLista .conteudo {
+#paginaNovaLista .conteudo,
+#paginaEditarLista .conteudo {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 0;
 }
 
-#paginaNovaLista .card {
+#paginaNovaLista .card,
+#paginaEditarLista .card {
   width: 100%;
 }
 
 @media (min-width: 600px) {
   #paginaLogin .card,
   #paginaCadastro .card,
-  #paginaNovaLista .card {
+  #paginaNovaLista .card,
+  #paginaEditarLista .card {
     width: 60%;
   }
 
@@ -265,7 +267,8 @@ footer a:hover {
 @media (min-width: 900px) {
   #paginaLogin .card,
   #paginaCadastro .card,
-  #paginaNovaLista .card {
+  #paginaNovaLista .card,
+  #paginaEditarLista .card {
     width: 40%;
   }
 
@@ -277,7 +280,8 @@ footer a:hover {
 @media (min-width: 1280px) {
   #paginaLogin .card,
   #paginaCadastro .card,
-  #paginaNovaLista .card {
+  #paginaNovaLista .card,
+  #paginaEditarLista .card {
     width: 30%;
   }
 
