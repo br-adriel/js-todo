@@ -6,6 +6,8 @@ import {
   gerCampoForm,
   gerVisualizacao,
   gerMensagem,
+  gerLista,
+  gerIcone,
 } from "./componentes/geradoresHtml";
 import Usuario from "./classes/Usuario";
 import Lista from "./classes/Lista";
@@ -77,7 +79,7 @@ const pagCadastro = (() => {
       usuarioAtivo.push(novoUsuario);
 
       // Carrega página inicial
-      gerVisualizacao(pagInicial);
+      gerVisualizacao(pagInicial());
     }
   }
 
@@ -149,7 +151,7 @@ const pagLogin = (() => {
       usuarios.some((u) => u.usuario === usuarioForm && u.senha === senhaForm)
     ) {
       usuarios.push(usuarios.filter((u) => u.usuario === usuarioForm));
-      gerVisualizacao(pagInicial);
+      gerVisualizacao(pagInicial());
     } else {
       const campoMsg = document.getElementById("campoMsgForm");
       const msg = gerMensagem("Credenciais inválidas", "erro");
@@ -172,15 +174,74 @@ const pagLogin = (() => {
 })();
 
 // Página Inicial
-const pagInicial = (() => {
+function pagInicial() {
+  // botao nova tarefa
+  const icone = gerIcone(["bi", "bi-plus"]);
+
+  const btnNovaTarefa = gerBotao("button", "");
+  btnNovaTarefa.setAttribute("title", "Nova lista");
+  btnNovaTarefa.appendChild(icone);
+
+  // botao sair
+  const btnSair = gerBotao("button", "Sair");
+
+  // barra de acoes
+  const barra = document.createElement("div");
+  barra.classList.add("barraAcoes");
+  barra.appendChild(btnNovaTarefa);
+  barra.appendChild(btnSair);
+
+  // Div para as listas do usuario
+  const listas = document.createElement("div");
+  listas.classList.add("listas");
+
+  // Gera html das listas do usuario e adiciona na div
+  usuarioAtivo[0].listas.map((lista) => {
+    // Botao visualizar
+    const iconeVer = gerIcone(["bi", "bi-eye"]);
+
+    const btnVer = gerBotao("button", "");
+    btnVer.setAttribute("title", "Visualizar lista");
+    btnVer.appendChild(iconeVer);
+
+    // Botao editar
+    const iconeEditar = gerIcone(["bi", "bi-pen"]);
+
+    const btnEditar = gerBotao("button", "");
+    btnEditar.setAttribute("title", "Editar lista");
+    btnEditar.appendChild(iconeEditar);
+
+    // Botao apagar
+    const iconeApagar = gerIcone(["bi", "bi-trash"]);
+
+    const btnApagar = gerBotao("button", "");
+    btnApagar.setAttribute("title", "Apagar lista");
+    btnApagar.appendChild(iconeApagar);
+
+    // Div com os botões
+    const divBotoes = document.createElement("div");
+    divBotoes.classList.add("botoes");
+    divBotoes.appendChild(btnVer);
+    divBotoes.appendChild(btnEditar);
+    divBotoes.appendChild(btnApagar);
+
+    const listaHtml = gerLista(lista);
+    listaHtml.appendChild(divBotoes);
+
+    listas.appendChild(listaHtml);
+  });
+
+  // Section da pagina inicial
   const paginaInicial = document.createElement("section");
   paginaInicial.setAttribute("id", "paginaInicial");
+  paginaInicial.appendChild(barra);
+  paginaInicial.appendChild(listas);
   return paginaInicial;
-})();
+}
 
 const conteudo = document.getElementById("content");
-if (usuarioAtivo.length == 0) {
+if (usuarioAtivo.length === 0) {
   conteudo.appendChild(pagLogin);
 } else {
-  conteudo.appendChild(pagInicial);
+  conteudo.appendChild(pagInicial());
 }

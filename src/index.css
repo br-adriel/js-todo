@@ -184,7 +184,8 @@ footer a:hover {
 
 /* Página de login e c adastro */
 #paginaLogin,
-#paginaCadastro {
+#paginaCadastro,
+#paginaInicial {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -196,10 +197,43 @@ footer a:hover {
   width: 95%;
 }
 
+/* Página inicial */
+#paginaInicial {
+  gap: 1rem;
+}
+
+#paginaInicial .barraAcoes {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#paginaInicial h3 {
+  font-size: 1.5rem;
+}
+
+#paginaInicial .listas {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1;
+  gap: 1rem;
+}
+
+#paginaInicial .listas .card .botoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
 @media (min-width: 600px) {
   #paginaLogin .card,
   #paginaCadastro .card {
     width: 60%;
+  }
+
+  #paginaInicial .listas {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -208,11 +242,19 @@ footer a:hover {
   #paginaCadastro .card {
     width: 40%;
   }
+
+  #paginaInicial .listas {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1280px) {
   #paginaLogin .card,
   #paginaCadastro .card {
     width: 30%;
+  }
+
+  #paginaInicial .listas {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
