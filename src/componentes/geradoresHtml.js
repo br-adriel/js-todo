@@ -86,4 +86,18 @@ function gerLista(lista) {
   return listaHtml;
 }
 
-export { gerBotao, gerCampoForm, gerVisualizacao, gerMensagem, gerLista };
+/* Gerador de ícones */
+function gerIcone(classes = []) {
+  const icone = document.createElement("i");
+  icone.classList.add(...classes);
+  return icone;
+}
+
+export {
+  gerBotao,
+  gerCampoForm,
+  gerVisualizacao,
+  gerMensagem,
+  gerLista,
+  gerIcone,
+};
