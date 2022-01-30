@@ -59,4 +59,31 @@ function gerMensagem(mensagem, tipo) {
   return msgHtml;
 }
 
-export { gerBotao, gerCampoForm, gerVisualizacao, gerMensagem };
+/* Gera html para Lista de tarefas  */
+function gerLista(lista) {
+  const listaHtml = document.createElement("div");
+  listaHtml.classList.add("card");
+
+  const h3 = document.createElement("h3");
+  h3.innerText = lista.nome;
+
+  const p = document.createElement("p");
+  p.innerText = lista.descricao;
+
+  const contagem = document.createElement("p");
+  switch (lista.tarefas.length) {
+    case 1:
+      contagem.innerText = `${lista.tarefas.length} tarefa`;
+      break;
+    default:
+      contagem.innerText = `${lista.tarefas.length} tarefas`;
+  }
+
+  listaHtml.appendChild(h3);
+  listaHtml.appendChild(contagem);
+  listaHtml.appendChild(p);
+
+  return listaHtml;
+}
+
+export { gerBotao, gerCampoForm, gerVisualizacao, gerMensagem, gerLista };
