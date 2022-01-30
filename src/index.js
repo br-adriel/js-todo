@@ -17,7 +17,7 @@ const usuarios = [];
 const usuarioAtivo = [];
 
 // Página de cadastro
-const pagCadastro = (() => {
+function pagCadastro() {
   // titulo do card
   const titulo = document.createElement("h2");
   titulo.innerText = "Criar conta";
@@ -88,7 +88,7 @@ const pagCadastro = (() => {
   linkLogin.setAttribute("href", "#");
   linkLogin.innerText = "Faça login";
   linkLogin.addEventListener("click", () => {
-    gerVisualizacao(pagLogin);
+    gerVisualizacao(pagLogin());
   });
 
   const pLogin = document.createElement("p");
@@ -111,10 +111,10 @@ const pagCadastro = (() => {
   paginaCadastro.setAttribute("id", "paginaCadastro");
   paginaCadastro.appendChild(cardCadastro);
   return paginaCadastro;
-})();
+}
 
 // Página de Login
-const pagLogin = (() => {
+function pagLogin() {
   // titulo do card
   const titulo = document.createElement("h2");
   titulo.innerText = "Entrar";
@@ -124,7 +124,7 @@ const pagLogin = (() => {
   linkCriarConta.setAttribute("href", "#");
   linkCriarConta.innerText = "Cadastre-se";
   linkCriarConta.addEventListener("click", (e) => {
-    gerVisualizacao(pagCadastro);
+    gerVisualizacao(pagCadastro());
   });
 
   const pCriarConta = document.createElement("p");
@@ -146,11 +146,8 @@ const pagLogin = (() => {
 
     const usuarioForm = document.getElementById("formUsuario").value;
     const senhaForm = document.getElementById("formSenha").value;
-
-    if (
-      usuarios.some((u) => u.usuario === usuarioForm && u.senha === senhaForm)
-    ) {
-      usuarios.push(usuarios.filter((u) => u.usuario === usuarioForm));
+    if (usuarios.some((u) => u.usuario === usuarioForm && u.login(senhaForm))) {
+      usuarioAtivo.push(...usuarios.filter((u) => u.usuario === usuarioForm));
       gerVisualizacao(pagInicial());
     } else {
       const campoMsg = document.getElementById("campoMsgForm");
@@ -171,7 +168,7 @@ const pagLogin = (() => {
   paginaLogin.appendChild(cardLogin);
 
   return paginaLogin;
-})();
+}
 
 // Página Inicial
 function pagInicial() {
@@ -184,6 +181,10 @@ function pagInicial() {
 
   // botao sair
   const btnSair = gerBotao("button", "Sair");
+  btnSair.addEventListener("click", () => {
+    usuarioAtivo.pop();
+    gerVisualizacao(pagLogin());
+  });
 
   // barra de acoes
   const barra = document.createElement("div");
@@ -241,7 +242,7 @@ function pagInicial() {
 
 const conteudo = document.getElementById("content");
 if (usuarioAtivo.length === 0) {
-  conteudo.appendChild(pagLogin);
+  conteudo.appendChild(pagLogin());
 } else {
   conteudo.appendChild(pagInicial());
 }
