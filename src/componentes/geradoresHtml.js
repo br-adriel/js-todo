@@ -79,10 +79,14 @@ function gerLista(lista) {
       contagem.innerText = `${lista.tarefas.length} tarefas`;
   }
 
-  listaHtml.appendChild(h3);
-  listaHtml.appendChild(contagem);
-  listaHtml.appendChild(p);
+  const conteudo = document.createElement("div");
+  conteudo.classList.add("conteudo");
 
+  conteudo.appendChild(h3);
+  conteudo.appendChild(contagem);
+  conteudo.appendChild(p);
+
+  listaHtml.appendChild(conteudo);
   return listaHtml;
 }
 
