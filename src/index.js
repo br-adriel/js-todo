@@ -196,6 +196,20 @@ function pagInicial() {
   const listas = document.createElement("div");
   listas.classList.add("listas");
 
+  function excluirLista(dataCriacao) {
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].username === usuarioAtivo[0].username) {
+        usuarios[i].listas = usuarios[i].listas.filter(
+          (lista) => lista.criadaEm !== dataCriacao
+        );
+        usuarioAtivo.pop();
+        usuarioAtivo.push(usuarios[i]);
+        break;
+      }
+    }
+    gerVisualizacao(pagInicial());
+  }
+
   // Gera html das listas do usuario e adiciona na div
   usuarioAtivo[0].listas.map((lista) => {
     // Botao visualizar
@@ -218,6 +232,7 @@ function pagInicial() {
     const btnApagar = gerBotao("button", "");
     btnApagar.setAttribute("title", "Apagar lista");
     btnApagar.appendChild(iconeApagar);
+    btnApagar.addEventListener("click", () => excluirLista(lista.criadaEm));
 
     // Div com os botões
     const divBotoes = document.createElement("div");
