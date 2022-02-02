@@ -1,8 +1,7 @@
 class Tarefa {
   #criadaEm;
-  constructor(titulo, descricao, dataConclusao) {
+  constructor(titulo, dataConclusao) {
     this.titulo = titulo;
-    this.descricao = descricao;
     this.dataConclusao = dataConclusao;
     this.prioridade = 0;
     this.concluida = false;
