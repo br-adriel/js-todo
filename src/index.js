@@ -9,6 +9,7 @@ import {
   gerMensagem,
   gerLista,
   gerIcone,
+  gerListaTarefas,
 } from "./componentes/geradoresHtml";
 import Usuario from "./classes/Usuario";
 import Lista from "./classes/Lista";
@@ -223,6 +224,10 @@ function pagInicial() {
     gerVisualizacao(pagInicial());
   }
 
+  function verLista(lista) {
+    gerVisualizacao(pagVerLista(lista));
+  }
+
   // Gera html das listas do usuario e adiciona na div
   usuarioAtivo[0].listas.map((lista) => {
     // Botao visualizar
@@ -231,6 +236,7 @@ function pagInicial() {
     const btnVer = gerBotao("button", "");
     btnVer.setAttribute("title", "Visualizar lista");
     btnVer.appendChild(iconeVer);
+    btnVer.addEventListener("click", () => verLista(lista));
 
     // Botao editar
     const iconeEditar = gerIcone(["bi", "bi-pen"]);
@@ -416,6 +422,56 @@ function pagEditarLista(lista) {
   paginaEditarLista.appendChild(div);
 
   return paginaEditarLista;
+}
+
+function pagVerLista(lista) {
+  // botao voltar
+  const icone = gerIcone(["bi", "bi-arrow-left"]);
+
+  const btnVoltar = gerBotao("button", "");
+  btnVoltar.setAttribute("title", "Voltar");
+  btnVoltar.appendChild(icone);
+  btnVoltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial());
+  });
+
+  // botao sair
+  const btnSair = gerBotao("button", "Sair");
+  btnSair.addEventListener("click", () => {
+    usuarioAtivo.pop();
+    gerVisualizacao(pagLogin());
+  });
+
+  // botao nova tarefa
+  const btnNovatarefa = gerBotao("button", "Nova tarefa");
+
+  // barra de acoes
+  const barra = document.createElement("div");
+  barra.classList.add("barraAcoes");
+  barra.appendChild(btnVoltar);
+  barra.appendChild(btnSair);
+  barra.appendChild(btnNovatarefa);
+
+  const listaHtml = gerListaTarefas(lista);
+  listaHtml.classList.add("tarefas");
+
+  // card da visualizacao da lista
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.appendChild(listaHtml);
+
+  // div para guardar o conteudo da pagina
+  const div = document.createElement("div");
+  div.classList.add("conteudo");
+  div.appendChild(card);
+
+  // Section da pagina de ver lista
+  const paginaVerLista = document.createElement("section");
+  paginaVerLista.setAttribute("id", "paginaVerLista");
+  paginaVerLista.appendChild(barra);
+  paginaVerLista.appendChild(div);
+
+  return paginaVerLista;
 }
 
 const conteudo = document.getElementById("content");

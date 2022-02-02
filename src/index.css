@@ -154,6 +154,7 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 95%;
 }
 
 .msg {
@@ -189,24 +190,15 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#paginaLogin .card,
-#paginaCadastro .card,
-#paginaNovaLista .card {
-  width: 95%;
-}
-
-/* Página inicial */
-#paginaInicial,
-#paginaNovaLista,
-#paginaEditarLista {
   gap: 1rem;
 }
 
-#paginaInicial .barraAcoes,
-#paginaNovaLista .barraAcoes,
-#paginaEditarLista .barraAcoes {
+#paginaInicial .card {
+  width: 100%;
+}
+
+/* Página inicial */
+.barraAcoes {
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -237,26 +229,58 @@ section {
   gap: 0.5rem;
 }
 
-/* Página nova lista */
-#paginaNovaLista .conteudo,
-#paginaEditarLista .conteudo {
+.conteudo {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 0;
 }
 
-#paginaNovaLista .card,
-#paginaEditarLista .card {
+/* Página ver lista de tarefas */
+#paginaVerLista .tarefa {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 100%;
+  gap: 0.5rem;
+}
+
+#paginaVerLista .tarefas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#paginaVerLista .texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+#paginaVerLista .tarefa button {
+  padding: 0.1rem;
+  background: none;
+  color: var(--cor-1);
+  border: none;
+}
+
+#paginaVerLista .tarefa button:hover {
+  padding: 0.1rem;
+}
+
+#paginaVerLista .concluida .nome-tarefa {
+  text-decoration: line-through;
 }
 
 @media (min-width: 600px) {
-  #paginaLogin .card,
-  #paginaCadastro .card,
-  #paginaNovaLista .card,
-  #paginaEditarLista .card {
+  .card {
     width: 60%;
+  }
+
+  #paginaInicial .card {
+    width: 100%;
   }
 
   #paginaInicial .listas {
@@ -265,11 +289,12 @@ section {
 }
 
 @media (min-width: 900px) {
-  #paginaLogin .card,
-  #paginaCadastro .card,
-  #paginaNovaLista .card,
-  #paginaEditarLista .card {
+  .card {
     width: 40%;
+  }
+
+  #paginaInicial .card {
+    width: 100%;
   }
 
   #paginaInicial .listas {
@@ -278,11 +303,12 @@ section {
 }
 
 @media (min-width: 1280px) {
-  #paginaLogin .card,
-  #paginaCadastro .card,
-  #paginaNovaLista .card,
-  #paginaEditarLista .card {
+  .card {
     width: 30%;
+  }
+
+  #paginaInicial .card {
+    width: 100%;
   }
 
   #paginaInicial .listas {
