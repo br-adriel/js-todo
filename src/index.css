@@ -30,7 +30,8 @@ a,
 input,
 label,
 button,
-span {
+span,
+select {
   font-size: 1.2rem;
 }
 
@@ -82,7 +83,8 @@ button:hover {
   border: 2px solid var(--cor-1);
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 0.5rem;
   border: 2px #ddd dashed;
@@ -90,7 +92,8 @@ input {
   transition: 0.2s border;
 }
 
-input:focus {
+input:focus,
+select:focus {
   border: 2px dashed var(--cor-1);
   outline: none;
 }
@@ -269,6 +272,22 @@ section {
 
 #paginaVerLista .tarefa button:hover {
   padding: 0.1rem;
+}
+
+#paginaVerLista .data-tarefa {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+#paginaVerLista .listagem-tarefas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bi-exclamation-diamond {
+  color: #fba609;
+  margin-left: 0.25rem;
 }
 
 #paginaVerLista .concluida .nome-tarefa {
