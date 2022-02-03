@@ -1,15 +1,30 @@
-import { barraAcao } from "../componentes/BarraAcoes";
-import { gerBotao } from "../componentes/geradoresHtml";
+import barraAcao from "../componentes/BarraAcoes";
+import {
+  gerBotao,
+  gerVisualizacao,
+  gerIcone,
+} from "../componentes/geradoresHtml";
+import pagnovaTarefa from "./NovaTarefa";
+import btnVoltar from "../componentes/BtnVoltar";
+import btnSair from "../componentes/BtnSair";
+import pagInicial from "./Inicio";
 
 function gerarTarefaHtml(tarefa) {
   // titulo da tarefa
   const titulo = document.createElement("p");
-  titulo.innerText = tarefa.titulo;
   titulo.classList.add("nome-tarefa");
+  titulo.innerText = tarefa.titulo;
+
+  if (tarefa.prioridade === 1) {
+    const iconeUrgente = gerIcone(["bi", "bi-exclamation-diamond"]);
+    iconeUrgente.setAttribute("title", "Urgente");
+    titulo.append(iconeUrgente);
+  }
 
   // data de conclusao da tarefa
   const data = document.createElement("p");
   data.classList.add("data-tarefa");
+  data.innerText = tarefa.dataConclusao;
 
   // div para os textos da tarefa
   const texto = document.createElement("div");
@@ -70,9 +85,21 @@ function gerarListaTarefasHtml(lista) {
 function pagVerLista(lista, usuarios, usuarioAtivo) {
   // botao nova tarefa
   const btnNovatarefa = gerBotao("button", "Nova tarefa");
+  btnNovatarefa.addEventListener("click", () =>
+    gerVisualizacao(pagnovaTarefa(lista, usuarios, usuarioAtivo))
+  );
 
   // barra de acoes
-  const barra = barraAcao(usuarios, usuarioAtivo);
+  const voltar = btnVoltar();
+  voltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
+  });
+
+  const sair = btnSair(usuarios);
+
+  const barra = barraAcao();
+  barra.appendChild(voltar);
+  barra.appendChild(sair);
   barra.appendChild(btnNovatarefa);
 
   const listaHtml = gerarListaTarefasHtml(lista);

@@ -1,8 +1,10 @@
 import formLista from "../componentes/formLista";
 import { gerBotao, gerVisualizacao } from "../componentes/geradoresHtml";
 import Lista from "../classes/Lista";
-import { barraAcao } from "../componentes/BarraAcoes";
+import barraAcao from "../componentes/BarraAcoes";
 import pagInicial from "./Inicio";
+import btnSair from "../componentes/BtnSair";
+import btnVoltar from "../componentes/BtnVoltar";
 
 function pagNovaLista(usuarios, usuarioAtivo) {
   // form de nova lista
@@ -44,7 +46,16 @@ function pagNovaLista(usuarios, usuarioAtivo) {
   div.appendChild(card);
 
   // barra de acoes
-  const barra = barraAcao(usuarios, usuarioAtivo);
+  const voltar = btnVoltar();
+  voltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
+  });
+
+  const sair = btnSair(usuarios);
+
+  const barra = barraAcao();
+  barra.appendChild(voltar);
+  barra.appendChild(sair);
 
   // Section da pagina de nova lista
   const paginaNovaLista = document.createElement("section");

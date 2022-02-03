@@ -3,10 +3,11 @@ import {
   gerVisualizacao,
   gerIcone,
 } from "../componentes/geradoresHtml";
-import pagLogin from "./Login";
 import pagNovaLista from "./NovaLista";
 import pagEditarLista from "./EditarLista";
 import pagVerLista from "./VerLista";
+import barraAcao from "../componentes/BarraAcoes";
+import btnSair from "../componentes/BtnSair";
 
 function gerarListaHtml(lista) {
   const listaHtml = document.createElement("div");
@@ -49,18 +50,10 @@ function pagInicial(usuarios, usuarioAtivo) {
     gerVisualizacao(pagNovaLista(usuarios, usuarioAtivo));
   });
 
-  // botao sair
-  const btnSair = gerBotao("button", "Sair");
-  btnSair.addEventListener("click", () => {
-    usuarioAtivo.pop();
-    gerVisualizacao(pagLogin(usuarios));
-  });
-
   // barra de acoes
-  const barra = document.createElement("div");
-  barra.classList.add("barraAcoes");
+  const barra = barraAcao();
   barra.appendChild(btnNovaLista);
-  barra.appendChild(btnSair);
+  barra.appendChild(btnSair(usuarios));
 
   // Div para as listas do usuario
   const listas = document.createElement("div");

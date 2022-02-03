@@ -1,17 +1,23 @@
 import formLista from "../componentes/formLista";
-import {
-  gerBotao,
-  gerVisualizacao,
-  gerIcone,
-} from "../componentes/geradoresHtml";
-import pagLogin from "./Login";
+import { gerBotao, gerVisualizacao } from "../componentes/geradoresHtml";
 import pagInicial from "./Inicio";
-import { barraAcao } from "../componentes/BarraAcoes";
+import barraAcao from "../componentes/BarraAcoes";
+import btnSair from "../componentes/BtnSair";
+import btnVoltar from "../componentes/BtnVoltar";
 
 // Página para editar lista de tarefas
 function pagEditarLista(lista, usuarios, usuarioAtivo) {
   // barra de acoes
-  const barra = barraAcao(usuarios, usuarioAtivo);
+  const voltar = btnVoltar();
+  voltar.addEventListener("click", () => {
+    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
+  });
+
+  const sair = btnSair(usuarios);
+
+  const barra = barraAcao();
+  barra.appendChild(voltar);
+  barra.appendChild(sair);
 
   // form de nova lista
   const btnSubmit = gerBotao("submit", "Atualizar");
