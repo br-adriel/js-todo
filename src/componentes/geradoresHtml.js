@@ -59,6 +59,31 @@ function gerMensagem(mensagem, tipo) {
   return msgHtml;
 }
 
+/* Gera selects para forms */
+function gerSelect(label, id, name, options = []) {
+  const campo = document.createElement("div");
+
+  const labelHtml = document.createElement("label");
+  labelHtml.setAttribute("for", id);
+  labelHtml.innerText = label;
+
+  const select = document.createElement("select");
+  select.setAttribute("name", name);
+  select.setAttribute("id", id);
+
+  options.map((opt) => {
+    const option = document.createElement("option");
+    option.innerText = opt[0];
+    option.setAttribute("value", opt[1]);
+
+    select.appendChild(option);
+  });
+
+  campo.appendChild(labelHtml);
+  campo.appendChild(select);
+  return campo;
+}
+
 /* Gerador de ícones */
 function gerIcone(classes = []) {
   const icone = document.createElement("i");
@@ -66,4 +91,11 @@ function gerIcone(classes = []) {
   return icone;
 }
 
-export { gerBotao, gerCampoForm, gerVisualizacao, gerMensagem, gerIcone };
+export {
+  gerBotao,
+  gerCampoForm,
+  gerVisualizacao,
+  gerMensagem,
+  gerIcone,
+  gerSelect,
+};
