@@ -19,7 +19,9 @@ function pagNovaTarefa(lista, usuarios, usuarioAtivo) {
     // Cria a nova tarefa
     const novaTarefa = new Tarefa(
       form["titulo-tarefa"].value,
-      new Date(form["conclusao-tarefa"].value)
+      new Date(
+        `${form["conclusaod-tarefa"].value} ${form["conclusaoh-tarefa"].value}`
+      )
     );
     novaTarefa.prioridade = parseInt(form["prioridade-tarefa"].value);
 

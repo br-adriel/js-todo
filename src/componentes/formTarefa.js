@@ -18,13 +18,25 @@ function formTarefa(titulo = "") {
       ["name", "titulo-tarefa"],
     ]
   );
+
   const dataConclusao = gerCampoForm(
     "Data de conclusão:",
     "date",
     "formDataConclusao",
     "",
     [
-      ["name", "conclusao-tarefa"],
+      ["name", "conclusaod-tarefa"],
+      ["required", "true"],
+    ]
+  );
+
+  const horarioConclusao = gerCampoForm(
+    "Horário de conclusão:",
+    "time",
+    "formHoraConclusao",
+    "",
+    [
+      ["name", "conclusaoh-tarefa"],
       ["required", "true"],
     ]
   );
@@ -44,6 +56,7 @@ function formTarefa(titulo = "") {
   form.appendChild(campoMsg);
   form.appendChild(campoTitulo);
   form.appendChild(dataConclusao);
+  form.appendChild(horarioConclusao);
   form.appendChild(prioridade);
   return form;
 }
