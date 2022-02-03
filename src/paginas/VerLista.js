@@ -9,7 +9,7 @@ import btnVoltar from "../componentes/BtnVoltar";
 import btnSair from "../componentes/BtnSair";
 import pagInicial from "./Inicio";
 
-function gerarTarefaHtml(tarefa) {
+function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
   // titulo da tarefa
   const titulo = document.createElement("p");
   titulo.classList.add("nome-tarefa");
@@ -24,7 +24,6 @@ function gerarTarefaHtml(tarefa) {
   // data de conclusao da tarefa
   const data = document.createElement("p");
   data.classList.add("data-tarefa");
-  data.innerText = tarefa.dataConclusao;
 
   // div para os textos da tarefa
   const texto = document.createElement("div");
@@ -35,7 +34,36 @@ function gerarTarefaHtml(tarefa) {
   // botao de concluir tarefa
   const iconeBotao = document.createElement("i");
   const btnCheck = gerBotao("button", "");
+  btnCheck.addEventListener("click", () => {
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].username === usuarioAtivo[0].username) {
+        for (let j = 0; j < usuarios[i].listas.length; j++) {
+          if (usuarios[i].listas[j].criadaEm === lista.criadaEm) {
+            for (let k = 0; k < usuarios[i].listas[j].tarefas.length; k++) {
+              if (
+                usuarios[i].listas[j].tarefas[k].criadaEm === tarefa.criadaEm
+              ) {
+                usuarios[i].listas[j].tarefas[k].concluida = !tarefa.concluida;
 
+                usuarioAtivo.pop();
+                usuarioAtivo.push(usuarios[i]);
+
+                gerVisualizacao(
+                  pagVerLista(usuarios[i].listas[j], usuarios, usuarioAtivo)
+                );
+                break;
+              }
+            }
+          }
+          break;
+        }
+        break;
+      }
+    }
+  });
+
+  // div da tarefa
+  const tarefaHtml = document.createElement("div");
   if (tarefa.concluida) {
     tarefaHtml.classList.add("concluida");
 
@@ -43,22 +71,24 @@ function gerarTarefaHtml(tarefa) {
 
     btnCheck.appendChild(iconeBotao);
     btnCheck.setAttribute("title", "Marcar como não concluida");
+
+    data.innerText = "Concluida";
   } else {
     iconeBotao.classList.add("bi", "bi-square");
 
     btnCheck.appendChild(iconeBotao);
     btnCheck.setAttribute("title", "Marcar como concluida");
+
+    data.innerText = tarefa.dataConclusao;
   }
 
-  // div da tarefa
-  const tarefaHtml = document.createElement("div");
   tarefaHtml.classList.add("tarefa");
   tarefaHtml.appendChild(btnCheck);
   tarefaHtml.appendChild(texto);
   return tarefaHtml;
 }
 
-function gerarListaTarefasHtml(lista) {
+function gerarListaTarefasHtml(lista, usuarios, usuarioAtivo) {
   // nome da lista
   const h2 = document.createElement("h2");
   h2.innerText = lista.nome;
@@ -72,7 +102,9 @@ function gerarListaTarefasHtml(lista) {
   listaTarefas.classList.add("listagem-tarefas");
 
   lista.tarefas.map((tarefa) => {
-    listaTarefas.appendChild(gerarTarefaHtml(tarefa));
+    listaTarefas.appendChild(
+      gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo)
+    );
   });
 
   const listaHtml = document.createElement("div");
@@ -102,7 +134,7 @@ function pagVerLista(lista, usuarios, usuarioAtivo) {
   barra.appendChild(sair);
   barra.appendChild(btnNovatarefa);
 
-  const listaHtml = gerarListaTarefasHtml(lista);
+  const listaHtml = gerarListaTarefasHtml(lista, usuarios, usuarioAtivo);
   listaHtml.classList.add("tarefas");
 
   // card da visualizacao da lista

@@ -276,7 +276,11 @@ section {
 
 #paginaVerLista .data-tarefa {
   font-size: 0.8rem;
-  color: #444;
+  color: var(--cor-1);
+}
+
+#paginaVerLista .concluida .data-tarefa {
+  color: #666;
 }
 
 #paginaVerLista .listagem-tarefas {
