@@ -8,6 +8,8 @@ import pagnovaTarefa from "./NovaTarefa";
 import btnVoltar from "../componentes/BtnVoltar";
 import btnSair from "../componentes/BtnSair";
 import pagInicial from "./Inicio";
+import { formatDistance } from "date-fns";
+import ptBR from "date-fns/esm/locale/pt-BR/index.js";
 
 function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
   // titulo da tarefa
@@ -79,7 +81,10 @@ function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
     btnCheck.appendChild(iconeBotao);
     btnCheck.setAttribute("title", "Marcar como concluida");
 
-    data.innerText = tarefa.dataConclusao;
+    data.innerText = formatDistance(tarefa.dataConclusao, new Date(), {
+      locale: ptBR,
+      addSuffix: true,
+    });
   }
 
   tarefaHtml.classList.add("tarefa");

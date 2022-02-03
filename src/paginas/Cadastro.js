@@ -10,6 +10,7 @@ import {
 } from "./../componentes/geradoresHtml";
 import pagInicial from "./Inicio";
 import pagLogin from "./Login";
+import { addDays } from "date-fns";
 
 // Página de cadastro
 function pagCadastro(usuarios) {
@@ -63,8 +64,7 @@ function pagCadastro(usuarios) {
       campoMsg.appendChild(msg);
     } else {
       // cria data referente a dia atual mais um dia
-      const data = new Date();
-      data.setTime(data.getTime() + 8640000);
+      const data = addDays(new Date(), 7);
 
       // Cria uma tarefa padrão para novo usuário
       const novaTarefa = new Tarefa("Tarefa 1", data);
