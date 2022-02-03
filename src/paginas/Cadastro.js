@@ -67,7 +67,7 @@ function pagCadastro(usuarios) {
       data.setTime(data.getTime() + 8640000);
 
       // Cria uma tarefa padrão para novo usuário
-      const novaTarefa = new Tarefa("Tarefa 1", "Minha primeira tarefa", data);
+      const novaTarefa = new Tarefa("Tarefa 1", data);
 
       // Cria uma lista padrão para o novo usuário
       const novaLista = new Lista("Minhas tarefas");
