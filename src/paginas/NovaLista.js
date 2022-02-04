@@ -27,12 +27,9 @@ function pagNovaLista(usuarios, usuarioAtivo) {
         usuarios[i].listas.push(novaLista);
         usuarioAtivo.pop();
         usuarioAtivo.push(usuarios[i]);
-        break;
+        gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
       }
     }
-
-    // Volta para pagina inicial
-    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
   });
 
   // card para o form

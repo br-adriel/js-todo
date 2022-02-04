@@ -34,15 +34,16 @@ function pagNovaTarefa(lista, usuarios, usuarioAtivo) {
 
             usuarioAtivo.pop();
             usuarioAtivo.push(usuarios[i]);
-            break;
+
+            gerVisualizacao(
+              pagVerLista(usuarios[i].listas[j], usuarios, usuarioAtivo)
+            );
           }
         }
-        break;
       }
     }
 
     // Volta para pagina inicial
-    gerVisualizacao(pagVerLista(lista, usuarios, usuarioAtivo));
   });
 
   // card para o form

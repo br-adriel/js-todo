@@ -65,12 +65,13 @@ function pagInicial(usuarios, usuarioAtivo) {
         usuarios[i].listas = usuarios[i].listas.filter(
           (lista) => lista.criadaEm !== dataCriacao
         );
+
         usuarioAtivo.pop();
         usuarioAtivo.push(usuarios[i]);
-        break;
+
+        gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
       }
     }
-    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
   }
 
   function verLista(lista) {

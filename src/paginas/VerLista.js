@@ -53,13 +53,10 @@ function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
                 gerVisualizacao(
                   pagVerLista(usuarios[i].listas[j], usuarios, usuarioAtivo)
                 );
-                break;
               }
             }
           }
-          break;
         }
-        break;
       }
     }
   });

@@ -34,17 +34,14 @@ function pagEditarLista(lista, usuarios, usuarioAtivo) {
           if (usuarios[i].listas[j].criadaEm === lista.criadaEm) {
             usuarios[i].listas[j].nome = form["nome-lista"].value;
             usuarios[i].listas[j].descricao = form["descricao-lista"].value;
-            break;
+
+            usuarioAtivo.pop();
+            usuarioAtivo.push(usuarios[i]);
+            gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
           }
         }
-        usuarioAtivo.pop();
-        usuarioAtivo.push(usuarios[i]);
-        break;
       }
     }
-
-    // Volta para pagina inicial
-    gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
   });
 
   // Carrega o conteudo atual da lista
