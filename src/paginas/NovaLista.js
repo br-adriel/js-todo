@@ -24,7 +24,7 @@ function pagNovaLista(usuarios, usuarioAtivo) {
     // Adiciona lista ao usuario
     for (let i = 0; i < usuarios.length; i++) {
       if (usuarios[i].username === usuarioAtivo[0].username) {
-        usuarios[i].listas.push(novaLista);
+        usuarios[i].listas.unshift(novaLista);
         usuarioAtivo.pop();
         usuarioAtivo.push(usuarios[i]);
         gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
