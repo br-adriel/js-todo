@@ -6,8 +6,13 @@ import {
 } from "./../componentes/geradoresHtml";
 import pagInicial from "./Inicio";
 import pagCadastro from "./Cadastro";
+import armazenamento from "../armazenamento";
 
 function pagLogin(usuarios) {
+  if (armazenamento.ler("usuarios")) {
+    usuarios = JSON.parse(armazenamento.ler("usuarios"));
+  }
+
   const usuarioAtivo = [];
 
   // titulo do card
@@ -41,7 +46,9 @@ function pagLogin(usuarios) {
 
     const usuarioForm = document.getElementById("formUsuario").value;
     const senhaForm = document.getElementById("formSenha").value;
-    if (usuarios.some((u) => u.usuario === usuarioForm && u.login(senhaForm))) {
+    if (
+      usuarios.some((u) => u.usuario === usuarioForm && u.senha === senhaForm)
+    ) {
       usuarioAtivo.push(...usuarios.filter((u) => u.usuario === usuarioForm));
       gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
     } else {

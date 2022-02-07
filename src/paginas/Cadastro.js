@@ -11,9 +11,14 @@ import {
 import pagInicial from "./Inicio";
 import pagLogin from "./Login";
 import { addDays } from "date-fns";
+import armazenamento from "../armazenamento";
 
 // Página de cadastro
 function pagCadastro(usuarios) {
+  if (armazenamento.ler("usuarios")) {
+    usuarios = JSON.parse(armazenamento.ler("usuarios"));
+  }
+
   const usuarioAtivo = [];
 
   // titulo do card
@@ -80,6 +85,8 @@ function pagCadastro(usuarios) {
       // Adiciona novo usuario a lista de usuarios e define como o ativo
       usuarios.push(novoUsuario);
       usuarioAtivo.push(novoUsuario);
+
+      armazenamento.gravar("usuarios", JSON.stringify(usuarios));
 
       // Carrega página inicial
       gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
