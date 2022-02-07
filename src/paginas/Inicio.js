@@ -8,6 +8,7 @@ import pagEditarLista from "./EditarLista";
 import pagVerLista from "./VerLista";
 import barraAcao from "../componentes/BarraAcoes";
 import btnSair from "../componentes/BtnSair";
+import armazenamento from "../armazenamento";
 
 function gerarListaHtml(lista) {
   const listaHtml = document.createElement("div");
@@ -68,6 +69,8 @@ function pagInicial(usuarios, usuarioAtivo) {
 
         usuarioAtivo.pop();
         usuarioAtivo.push(usuarios[i]);
+
+        armazenamento.gravar("usuarios", JSON.stringify(usuarios));
 
         gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
       }

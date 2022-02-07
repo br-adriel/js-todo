@@ -6,6 +6,7 @@ import formTarefa from "../componentes/formTarefa";
 import btnVoltar from "../componentes/BtnVoltar";
 import pagVerLista from "./VerLista";
 import btnSair from "../componentes/BtnSair";
+import armazenamento from "../armazenamento";
 
 function pagNovaTarefa(lista, usuarios, usuarioAtivo) {
   // form de nova lista
@@ -34,6 +35,8 @@ function pagNovaTarefa(lista, usuarios, usuarioAtivo) {
 
             usuarioAtivo.pop();
             usuarioAtivo.push(usuarios[i]);
+
+            armazenamento.gravar("usuarios", JSON.stringify(usuarios));
 
             gerVisualizacao(
               pagVerLista(usuarios[i].listas[j], usuarios, usuarioAtivo)

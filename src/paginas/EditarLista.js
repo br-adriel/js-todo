@@ -4,6 +4,7 @@ import pagInicial from "./Inicio";
 import barraAcao from "../componentes/BarraAcoes";
 import btnSair from "../componentes/BtnSair";
 import btnVoltar from "../componentes/BtnVoltar";
+import armazenamento from "../armazenamento";
 
 // Página para editar lista de tarefas
 function pagEditarLista(lista, usuarios, usuarioAtivo) {
@@ -37,6 +38,9 @@ function pagEditarLista(lista, usuarios, usuarioAtivo) {
 
             usuarioAtivo.pop();
             usuarioAtivo.push(usuarios[i]);
+
+            armazenamento.gravar("usuarios", JSON.stringify(usuarios));
+
             gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
           }
         }

@@ -5,6 +5,7 @@ import barraAcao from "../componentes/BarraAcoes";
 import pagInicial from "./Inicio";
 import btnSair from "../componentes/BtnSair";
 import btnVoltar from "../componentes/BtnVoltar";
+import armazenamento from "../armazenamento";
 
 function pagNovaLista(usuarios, usuarioAtivo) {
   // form de nova lista
@@ -25,8 +26,12 @@ function pagNovaLista(usuarios, usuarioAtivo) {
     for (let i = 0; i < usuarios.length; i++) {
       if (usuarios[i].username === usuarioAtivo[0].username) {
         usuarios[i].listas.unshift(novaLista);
+
         usuarioAtivo.pop();
         usuarioAtivo.push(usuarios[i]);
+
+        armazenamento.gravar("usuarios", JSON.stringify(usuarios));
+
         gerVisualizacao(pagInicial(usuarios, usuarioAtivo));
       }
     }

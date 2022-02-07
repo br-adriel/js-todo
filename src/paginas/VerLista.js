@@ -10,6 +10,7 @@ import btnSair from "../componentes/BtnSair";
 import pagInicial from "./Inicio";
 import { formatDistance } from "date-fns";
 import ptBR from "date-fns/esm/locale/pt-BR/index.js";
+import armazenamento from "../armazenamento";
 
 function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
   // titulo da tarefa
@@ -49,6 +50,8 @@ function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
 
                 usuarioAtivo.pop();
                 usuarioAtivo.push(usuarios[i]);
+
+                armazenamento.gravar("usuarios", JSON.stringify(usuarios));
 
                 gerVisualizacao(
                   pagVerLista(usuarios[i].listas[j], usuarios, usuarioAtivo)
