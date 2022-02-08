@@ -72,7 +72,10 @@ function pagCadastro(usuarios) {
       const data = addDays(new Date(), 7);
 
       // Cria uma tarefa padrão para novo usuário
-      const novaTarefa = new Tarefa("Tarefa 1", data);
+      const novaTarefa = new Tarefa(
+        "Tarefa 1",
+        JSON.parse(JSON.stringify(data))
+      );
 
       // Cria uma lista padrão para o novo usuário
       const novaLista = new Lista("Minhas tarefas");

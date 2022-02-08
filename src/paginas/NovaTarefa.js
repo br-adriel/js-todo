@@ -1,7 +1,6 @@
 import { gerBotao, gerVisualizacao } from "../componentes/geradoresHtml";
 import Tarefa from "../classes/Tarefa";
 import barraAcao from "../componentes/BarraAcoes";
-import pagInicial from "./Inicio";
 import formTarefa from "../componentes/formTarefa";
 import btnVoltar from "../componentes/BtnVoltar";
 import pagVerLista from "./VerLista";
@@ -17,12 +16,19 @@ function pagNovaTarefa(lista, usuarios, usuarioAtivo) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const dataForm = form["conclusaod-tarefa"].value.split("-");
+    const ano = dataForm[0];
+    const mes = dataForm[1] - 1;
+    const dia = dataForm[2];
+
+    const horaForm = form["conclusaoh-tarefa"].value.split(":");
+    const hora = horaForm[0];
+    const min = horaForm[1];
+
     // Cria a nova tarefa
     const novaTarefa = new Tarefa(
       form["titulo-tarefa"].value,
-      new Date(
-        `${form["conclusaod-tarefa"].value} ${form["conclusaoh-tarefa"].value}`
-      )
+      JSON.parse(JSON.stringify(new Date(ano, mes, dia, hora, min)))
     );
     novaTarefa.prioridade = parseInt(form["prioridade-tarefa"].value);
 

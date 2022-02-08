@@ -81,10 +81,14 @@ function gerarTarefaHtml(tarefa, lista, usuarios, usuarioAtivo) {
     btnCheck.appendChild(iconeBotao);
     btnCheck.setAttribute("title", "Marcar como concluida");
 
-    data.innerText = formatDistance(tarefa.dataConclusao, new Date(), {
-      locale: ptBR,
-      addSuffix: true,
-    });
+    data.innerText = formatDistance(
+      new Date(tarefa.dataConclusao),
+      new Date(),
+      {
+        locale: ptBR,
+        addSuffix: true,
+      }
+    );
   }
 
   tarefaHtml.classList.add("tarefa");
