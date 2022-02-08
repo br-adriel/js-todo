@@ -9,6 +9,8 @@ import pagVerLista from "./VerLista";
 import barraAcao from "../componentes/BarraAcoes";
 import btnSair from "../componentes/BtnSair";
 import armazenamento from "../armazenamento";
+import pagLogin from "./Login";
+import pagPerfil from "./Perfil";
 
 function gerarListaHtml(lista) {
   const listaHtml = document.createElement("div");
@@ -51,10 +53,18 @@ function pagInicial(usuarios, usuarioAtivo) {
     gerVisualizacao(pagNovaLista(usuarios, usuarioAtivo));
   });
 
+  // botao excluir conta
+  const btnPerfil = gerBotao("button", "Editar perfil");
+  btnPerfil.classList.add("editar-perfil");
+  btnPerfil.addEventListener("click", () => {
+    gerVisualizacao(pagPerfil(usuarios, usuarioAtivo));
+  });
+
   // barra de acoes
   const barra = barraAcao();
   barra.appendChild(btnNovaLista);
   barra.appendChild(btnSair(usuarios));
+  barra.appendChild(btnPerfil);
 
   // Div para as listas do usuario
   const listas = document.createElement("div");

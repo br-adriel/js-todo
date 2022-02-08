@@ -1,7 +1,7 @@
 :root {
   font-size: 16px;
   --cor-1: #2f3a8f;
-  --cor-2: #fe7e6d;
+  --cor-2: hsl(7, 99%, 35%);
   --sombra: 0 0 0.5rem rgba(12, 16, 39, 0.3);
   --sombra-leve: 0 0 0.3rem rgba(0, 0, 0, 0.2);
 }
@@ -196,6 +196,21 @@ section {
   gap: 1rem;
 }
 
+#paginaInicial .editar-perfil {
+  margin-left: auto;
+}
+
+#paginaPerfil .excluir-conta {
+  background-color: var(--cor-2);
+  border: 2px solid var(--cor-2);
+  margin-left: auto;
+}
+
+#paginaPerfil .excluir-conta:hover {
+  color: var(--cor-2);
+  background-color: #fff;
+}
+
 #paginaInicial .card {
   width: 100%;
 }
@@ -298,6 +313,13 @@ section {
   text-decoration: line-through;
 }
 
+#paginaPerfil .conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 @media (min-width: 600px) {
   .card {
     width: 60%;
@@ -323,6 +345,12 @@ section {
 
   #paginaInicial .listas {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #paginaPerfil .conteudo {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
   }
 }
 
